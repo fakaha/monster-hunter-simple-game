@@ -37,3 +37,50 @@ body{
     position: absolute;
     bottom: 30px;
 }
+
+.button-box{
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .button-box{
+        left: 50%;
+        transform: translateX(-50%);
+        position: absolute;
+        bottom: 180px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        /* background-color: white; */
+        border-radius: 10px;
+        /* opacity: 25%; */
+        width: 180px;
+        height: 180px;
+        gap: 10px;
+    }
+    
+    .button-box button{
+        width: 60px;
+        height: 60px;
+        opacity: 60%;
+        font-size: 24px;
+        border: none;
+        border-radius: 10px;
+        background-color: rgba(255,255,255,0.7);
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .button-box button:active{
+        background-color: rgba(200,200,200,0.7);
+    }
+    
+    .side-button{
+        display: flex;
+        gap: 20px;
+    }
+    
+}
