@@ -78,6 +78,11 @@ body{
         background-color: rgba(200,200,200,0.7);
     }
     
+    button#jump{
+        width: 120px;
+        height: 50px;
+    }
+
     .side-button{
         display: flex;
         gap: 20px;

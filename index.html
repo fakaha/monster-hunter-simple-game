@@ -19,6 +19,7 @@
                     <button id="right">→</button>
                 </div>
                 <button id="bottom">↓</button>
+                <button id="jump">Jump</button>
             </div>
 
             <div class="land"></div>
@@ -39,6 +40,7 @@
         const downBtn = document.getElementById('bottom');
         const leftBtn = document.getElementById('left');
         const rightBtn = document.getElementById('right');
+        const jumpBtn = document.getElementById('jump');
         
         const boxWidth = box.clientWidth;
         const charWidth = char.clientWidth;
@@ -183,6 +185,11 @@
                     char.style.transform = "scaleX(1)"
                 }
             }
+        })
+
+        jumpBtn.addEventListener('click', function(){
+            event.preventDefault();
+            throttleJump();
         })
         </script>
 </body>
