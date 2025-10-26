@@ -1,0 +1,39 @@
+body{
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    overflow: hidden;
+}
+
+.content{
+    height: 100vh;
+    width: 100vw;
+    background-color: #8DBCC7;
+}
+
+.box{
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    display: flex;
+}
+
+.land{
+    width: 100vw;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #B87C4C;
+    z-index: 1;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-top: green 10px solid;
+}
+
+.char{
+    height: 200px;
+    position: absolute;
+    bottom: 30px;
+}
