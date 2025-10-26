@@ -41,6 +41,9 @@
         const leftBtn = document.getElementById('left');
         const rightBtn = document.getElementById('right');
         const jumpBtn = document.getElementById('jump');
+
+        let flyOffset = 0; 
+        let flyDirection = 1;
         
         const boxWidth = box.clientWidth;
         const charWidth = char.clientWidth;
@@ -57,6 +60,7 @@
         }
                
         gravity();
+        flyingAnimation();
 
         function gravity () {
             if(positionY <= 30){
@@ -80,6 +84,20 @@
                 isJumping = true;
                 positionY += 30;
                 char.style.bottom  = positionY + 'px';
+            }
+
+            function flyingAnimation(){
+                if(positionY > 30){
+                    flyOffset += 0.5 * flyDirection;
+                    if(flyOffset > 10 || flyOffset < -10){
+                        flyDirection *= -1;
+                    }
+                    char.style.bottom = (positionY + flyOffset) + 'px';
+                }else{
+                    flyOffset = 0;
+                }
+
+                requestAnimationFrame(flyingAnimation);
             }
             
             const throttleJump = throttle(jump, 300);
