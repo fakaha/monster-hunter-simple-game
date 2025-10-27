@@ -47,6 +47,9 @@
         
         const boxWidth = box.clientWidth;
         const charWidth = char.clientWidth;
+
+        let isFire = false;
+        let fireBall = null;
         
         function throttle(callback, delay) {
             let lastTime = 0;
@@ -61,10 +64,13 @@
                
         gravity();
         flyingAnimation();
+        moveFireBall();
 
         function gravity () {
             if(positionY <= 30){
                 isJumping = false
+                char.src = "char-mount-side.png"
+                char.style.transform = facingRight ? "scaleX(1)" : "scaleX(-1)";
             }
             
             if(isJumping){
@@ -99,8 +105,60 @@
 
                 requestAnimationFrame(flyingAnimation);
             }
+
+            function getFireBallPosition() {
+                if(fireBall) {
+                    return parseFloat(fireBall.style.left.replace("px",""));
+                }
+                return null;
+            }
+
+            function moveFireBall(){
+                if(fireBall){
+                    let pos = parseFloat(fireBall.style.left.replace("px", ""));
+                    
+                    pos += 15 * fireBall.direction;
+                    
+                    fireBall.style.left = pos + "px";
+
+                    if(pos > box.clientWidth){
+                        fireBall.remove();
+                        fireBall = null;
+                    }
+                }
+
+                requestAnimationFrame(moveFireBall);
+            }
+
+            function shootFireBall(){
+                fireBall = document.createElement("img");
+                fireBall.classList = 'fireball';
+                fireBall.src = "fireball.png";
+                fireBall.style.width = "auto";
+                isFire = true;
+                if(positionY > 30){
+                    fireBall.style.bottom = (positionY + 85) + "px";
+                }else{
+                    fireBall.style.bottom = (positionY + 40) + "px";
+                }
+
+                if(facingRight){
+                    fireBall.style.transform = "scaleX(-1)";
+                    fireBall.style.left = (positionX + 130) + "px";
+                    fireBall.direction = 1;
+                }else{
+                    fireBall.style.left = (positionX + 40) + "px";
+                    fireBall.direction = -1;
+                }
+                fireBall.style.position = "absolute";
+                fireBall.style.height = "40px";
+                
+                box.appendChild(fireBall);
+                let fireBallPosition = parseFloat(fireBall.style.left.replace("px",""));
+            }
             
             const throttleJump = throttle(jump, 300);
+            const throttleFire = throttle(shootFireBall,  2500);
             
             document.addEventListener('keydown', function(event){
                 
@@ -155,6 +213,11 @@
             if(event.key === " " || event.code === "Space"){
                 event.preventDefault();
                 throttleJump();
+            }
+
+            if(event.key === 'f'){
+                event.preventDefault();
+                throttleFire();
             }
         })
         
