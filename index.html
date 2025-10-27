@@ -20,6 +20,7 @@
                 </div>
                 <button id="bottom">↓</button>
                 <button id="jump">Jump</button>
+                <button id="fire">Fire</button>
             </div>
 
             <div class="land"></div>
@@ -41,6 +42,7 @@
         const leftBtn = document.getElementById('left');
         const rightBtn = document.getElementById('right');
         const jumpBtn = document.getElementById('jump');
+        const fireBtn = document.getElementById('fire');
 
         let flyOffset = 0; 
         let flyDirection = 1;
@@ -272,6 +274,12 @@
             event.preventDefault();
             throttleJump();
         })
+
+        fireBtn.addEventListener('click', function(){
+            event.preventDefault();
+            throttleFire();
+        })
+
         </script>
 </body>
 </html>
