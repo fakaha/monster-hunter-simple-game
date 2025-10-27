@@ -42,6 +42,13 @@ body{
     display: none;
 }
 
+.rules{
+    font-weight: bolder;
+    font-size: 20px;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
 @media only screen and (max-width: 600px) {
     .button-box{
         left: 50%;
